@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "fred-econ"
+version = "0.1.0"
+description = "FRED economic data pipeline and interactive Plotly dashboard"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "click>=8.1",
+    "dash>=2.17",
+    "fredapi>=0.5",
+    "numpy>=1.26",
+    "pandas>=2.0",
+    "plotly>=5.20",
+    "python-dotenv>=1.0",
+    "scipy>=1.13",
+]
+
+[project.scripts]
+fred-econ = "fred_econ.cli:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v"
+
+[tool.coverage.run]
+source = ["fred_econ"]
+omit = ["tests/*"]
